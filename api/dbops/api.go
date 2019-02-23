@@ -49,7 +49,7 @@ func GetUserCredential(loginName string) (string, error) {
 	var pwd string
 	err = stmtOut.QueryRow(loginName).Scan(&pwd)
 	if err != nil && err != sql.ErrNoRows {
-		return "", nil
+		return "", err
 	}
 
 	return pwd, nil
@@ -87,7 +87,7 @@ func AddNewVideo(aid int, name string) (*defs.VideoInfo, error) {
 		return nil, err
 	}
 
-	res := &defs.VideoInfo{Id: vid, AuthorId: aid, Name: name, DisplayCtime: ctime}
+	res := &defs.VideoInfo{ID: vid, AuthorID: aid, Name: name, DisplayCtime: ctime}
 	return res, nil
 }
 
@@ -107,7 +107,7 @@ func GetVideoInfo(vid string) (*defs.VideoInfo, error) {
 	}
 
 	defer stmtOut.Close()
-	res := &defs.VideoInfo{Id: vid, AuthorId: aid, Name: name, DisplayCtime: dct}
+	res := &defs.VideoInfo{ID: vid, AuthorID: aid, Name: name, DisplayCtime: dct}
 	return res, nil
 }
 
@@ -154,7 +154,7 @@ func ListComments(vid string, from, to int) ([]*defs.Comments, error) {
 		if err := rows.Scan(&id, &content, &author); err != nil {
 			return res, err
 		}
-		c := &defs.Comments{Id: id, VideoId: vid, Author: author, Content: content}
+		c := &defs.Comments{ID: id, VideoID: vid, Author: author, Content: content}
 		res = append(res, c)
 	}
 	return res, nil

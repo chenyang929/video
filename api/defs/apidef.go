@@ -2,19 +2,29 @@ package defs
 
 type UserCredential struct {
 	Username string `json:"user_name"`
-	Pwd      string `json:"password"`
+	Pwd      string `json:"pwd"`
 }
 
 type VideoInfo struct {
-	Id           string
-	AuthorId     int
+	ID           string
+	AuthorID     int
 	Name         string
 	DisplayCtime string
 }
 
 type Comments struct {
-	Id      string
-	VideoId string
+	ID      string
+	VideoID string
 	Author  string
 	Content string
+}
+
+type SimpleSession struct {
+	Username string
+	TTL      int64
+}
+
+type SignedUp struct {
+	Success   bool   `json:"success"`
+	SessionID string `json:"session_id"`
 }
