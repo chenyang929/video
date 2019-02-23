@@ -76,7 +76,7 @@ func testAddVideoInfo(t *testing.T) {
 	if err != nil {
 		t.Errorf("Error of AddVideoInfo: %v", err)
 	}
-	tempvid = vi.Id
+	tempvid = vi.ID
 }
 
 func testGetVideoInfo(t *testing.T) {
